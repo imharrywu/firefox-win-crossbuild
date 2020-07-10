@@ -14,8 +14,10 @@ before_install:
 - sudo apt-get update -qy
 
 script:
-- if ! [ -f $HOME/tarballs/clangmingw.tar.zst ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/taskgecko.cache.level-3.toolchains.v3.linux64-clang-9-mingw-x86.latest/artifacts/public/build/clangmingw.tar.zst" -o $HOME/tarballs/clangmingw.tar.zst; fi
-- if ! [ -f $HOME/tarballs/rustc.tar.zst ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.mingw32-rust-1.43.latest/artifacts/public/build/rustc.tar.zst" -o $HOME/tarballs/rustc.tar.zst; fi
-- if ! [ -f $HOME/tarballs/cbindgen.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-cbindgen.latest/artifacts/public/build/cbindgen.tar.xz" -o $HOME/tarballs/cbindgen.tar.xz; fi
-- if ! [ -f $HOME/tarballs/nsis.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw32-nsis.latest/artifacts/public/build/nsis.tar.xz" -o $HOME/tarballs/nsis.tar.xz; fi
-- if ! [ -f $HOME/tarballs/fxc2.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o $HOME/tarballs/fxc2.tar.xz; fi
+- find $HOME/tarballs
+- if ! [ -f $HOME/tarballs/clangmingw.tar.zst ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/taskgecko.cache.level-3.toolchains.v3.linux64-clang-9-mingw-x86.latest/artifacts/public/build/clangmingw.tar.zst" -o $HOME/tarballs/clangmingw.tar.zst; fi
+- if ! [ -f $HOME/tarballs/rustc.tar.zst ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.mingw32-rust-1.43.latest/artifacts/public/build/rustc.tar.zst" -o $HOME/tarballs/rustc.tar.zst; fi
+- if ! [ -f $HOME/tarballs/cbindgen.tar.xz ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-cbindgen.latest/artifacts/public/build/cbindgen.tar.xz" -o $HOME/tarballs/cbindgen.tar.xz; fi
+- if ! [ -f $HOME/tarballs/nsis.tar.xz ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw32-nsis.latest/artifacts/public/build/nsis.tar.xz" -o $HOME/tarballs/nsis.tar.xz; fi
+- if ! [ -f $HOME/tarballs/fxc2.tar.xz ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o $HOME/tarballs/fxc2.tar.xz; fi
+- find $HOME/tarballs
