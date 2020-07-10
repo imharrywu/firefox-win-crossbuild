@@ -17,6 +17,7 @@ before_install:
 
 script:
 - mkdir -p mozilla-central
+- pwd
 - cd mozilla-central
 - git init
 - git remote add origin https://github.com/imharrywu/mozilla-central
