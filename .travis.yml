@@ -16,7 +16,7 @@ before_install:
 - sudo apt-get update -qy
 - sudo mkdir -p /builds/worker/fetches/mingw32/
 install:
-- sudo apt-get install -y zstd win32
+- sudo apt-get install -y zstd wine32
 - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 - export NVM_DIR="$HOME/.nvm"
 - source "$NVM_DIR/nvm.sh"  # This loads nvm
