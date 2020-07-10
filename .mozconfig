@@ -1,0 +1,6 @@
+TOOLTOOL_DIR=$TRAVIS_BUILD_DIR
+. "$topsrcdir/browser/config/mozconfigs/win32/mingwclang"
+RUSTC="${TOOLTOOL_DIR}/rustc/bin/rustc"
+CARGO="${TOOLTOOL_DIR}/rustc/bin/cargo"
+RUSTFMT="${TOOLTOOL_DIR}/rustc/bin/rustfmt"
+CBINDGEN="${TOOLTOOL_DIR}/cbindgen/cbindgen"
