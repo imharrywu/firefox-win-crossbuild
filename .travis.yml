@@ -12,6 +12,7 @@ cache:
 
 before_install:
 - sudo apt-get update -qy
+- sudo apt-get install -y zstd
 
 script:
 - find $HOME/tarballs
@@ -21,3 +22,9 @@ script:
 - if ! [ -f $HOME/tarballs/nsis.tar.xz ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw32-nsis.latest/artifacts/public/build/nsis.tar.xz" -o $HOME/tarballs/nsis.tar.xz; fi
 - if ! [ -f $HOME/tarballs/fxc2.tar.xz ]; then curl -vkL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o $HOME/tarballs/fxc2.tar.xz; fi
 - find $HOME/tarballs
+- tar -I zstd -xvf $HOME/tarballs/clangmingw.tar.zst
+- tar -I zstd -xvf $HOME/tarballs/rustc.tar.zst
+- tar -xvJpf $HOME/tarballs/cbindgen.tar.xz 
+- tar -xvJpf $HOME/tarballs/nsis.tar.xz 
+- tar -xvJpf $HOME/tarballs/fxc2.tar.xz 
+- find . -type d -maxdepth 3
