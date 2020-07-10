@@ -1,34 +1,8 @@
 TOOLTOOL_DIR=$TRAVIS_BUILD_DIR
 MOZ_FETCHES_DIR=$TRAVIS_BUILD_DIR
 
-# Sets:
-#    MOZ_AUTOMATION flags
-#    SOCORRO_SYMBOL_UPLOAD_TOKEN_FILE - shouldn't be used?
-#    TOOLTOOL_DIR
-#    MAKECAB - shouldn't be used?
-#    DUMP_SYMS - isn't used.
-. "$topsrcdir/build/mozconfig.win-common"
-
-# MinGW does not have (or need) makecab
 unset MAKECAB
 unset DUMP_SYMS
-
-# Sets:
-#  build/mozconfig.common
-#    AUTOCLOBBER=1
-#    --enable-crashreporter
-#    --enable-release
-#    LLVM_CONFIG
-#    MOZ_ADDON_SIGNING
-#    MOZ_REQUIRE_SIGNING
-#    --enable-js-shell
-#  build/mozconfig.automation
-#    MOZ_AUTOMATION_ flags
-#  build/mozconfig.rust
-#    TOOLTOOL_DIR
-#    RUSTC
-#    CARGO
-. "$topsrcdir/browser/config/mozconfigs/common"
 
 export MOZ_PACKAGE_JSSHELL=1
 
@@ -72,8 +46,6 @@ mk_add_options "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 # Do not include the visual studio related mozconfigs of course
 
 ac_add_options --with-branding=browser/branding/nightly
-
-. "$topsrcdir/build/mozconfig.common.override"
 
 RUSTC="${TOOLTOOL_DIR}/rustc/bin/rustc"
 CARGO="${TOOLTOOL_DIR}/rustc/bin/cargo"
