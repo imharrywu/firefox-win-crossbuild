@@ -13,7 +13,7 @@ cache:
 
 before_install:
 - echo $DISPLAY
-- export $DISPLAY=:0
+- export DISPLAY=:0
 - sudo apt-get update -qy
 - sudo mkdir -p /builds/worker/fetches/mingw32/
 install:
