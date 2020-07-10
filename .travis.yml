@@ -34,6 +34,6 @@ script:
 - git fetch origin master
 - git checkout -b master origin/master
 - cp -f $TRAVIS_BUILD_DIR/.mozconfig ./
-- mach build
+- ./mach build
 
 
