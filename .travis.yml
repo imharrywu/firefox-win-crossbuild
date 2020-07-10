@@ -1,0 +1,19 @@
+# https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Cross_Compile_Mozilla_for_Mingw32
+
+language: cpp
+os: linux
+dist: xenial
+arch: amd64
+sudo: required
+compiler: clang
+cache:
+  directories:
+  - $HOME/tarballs
+
+before_install:
+- sudo apt-get update -qy
+
+script:
+- export BASE_URL="https://firefox-ci-tc.services.mozilla.com/api/index/v1/task"
+- if ! [ -f $HOME/clangmingw.tar.zst ]; then curl -kL "$BASE_URL/gecko.cache.level-3.toolchains.v3.linux64-clang-9-mingw-x86.latest/artifacts/public/build/clangmingw.tar.zst" -o $HOME/tarballs/clangmingw.tar.zst; fi
+
