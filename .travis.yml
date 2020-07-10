@@ -37,8 +37,8 @@ script:
 - tar -xJpf $HOME/tarballs/fxc2.tar.xz
 
 - sudo cp -rf ./mingw32/* /builds/worker/fetches/mingw32/
-- export PATH=$PATH:/$TRAVIS_BUILD_DIR/fxc2
-- fxc2 --version
+- export PATH=$PATH:$TRAVIS_BUILD_DIR/fxc2
+- find $TRAVIS_BUILD_DIR -type d -maxdepth 3
 
 - mkdir -p mozilla-central
 - cd mozilla-central
