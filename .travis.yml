@@ -33,5 +33,7 @@ script:
 - git remote add origin https://github.com/imharrywu/mozilla-central
 - git fetch origin master
 - git checkout -b master origin/master
+- cp -f $TRAVIS_BUILD_DIR/.mozconfig ./
+- mach build
 
 
