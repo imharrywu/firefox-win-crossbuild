@@ -20,10 +20,18 @@ script:
 - if ! [ -f $HOME/tarballs/cbindgen.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-cbindgen.latest/artifacts/public/build/cbindgen.tar.xz" -o $HOME/tarballs/cbindgen.tar.xz; fi
 - if ! [ -f $HOME/tarballs/nsis.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw32-nsis.latest/artifacts/public/build/nsis.tar.xz" -o $HOME/tarballs/nsis.tar.xz; fi
 - if ! [ -f $HOME/tarballs/fxc2.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o $HOME/tarballs/fxc2.tar.xz; fi
-- find $HOME/tarballs
-- tar -I zstd -xvf $HOME/tarballs/clangmingw.tar.zst
-- tar -I zstd -xvf $HOME/tarballs/rustc.tar.zst
-- tar -xvJpf $HOME/tarballs/cbindgen.tar.xz 
-- tar -xvJpf $HOME/tarballs/nsis.tar.xz 
-- tar -xvJpf $HOME/tarballs/fxc2.tar.xz 
-- find . -type d -maxdepth 3
+
+- tar -I zstd -xf $HOME/tarballs/clangmingw.tar.zst
+- tar -I zstd -xf $HOME/tarballs/rustc.tar.zst
+- tar -xJpf $HOME/tarballs/cbindgen.tar.xz 
+- tar -xJpf $HOME/tarballs/nsis.tar.xz 
+- tar -xJpf $HOME/tarballs/fxc2.tar.xz 
+
+- mkdir -p mozilla-central
+- cd mozilla-cental
+- git init
+- git remote add origin https://github.com/imharrywu/mozilla-central
+- git fetch origin master
+- git checkout -b master origin/master
+
+
