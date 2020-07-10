@@ -12,7 +12,7 @@ cache:
   - $HOME/tarballs
 
 before_install:
-- dpkg --add-architecture i386
+- sudo dpkg --add-architecture i386
 - sudo apt-get update -qy
 - sudo mkdir -p /builds/worker/fetches/mingw32/
 install:
