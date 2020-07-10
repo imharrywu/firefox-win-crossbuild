@@ -37,6 +37,8 @@ script:
 - tar -xJpf $HOME/tarballs/fxc2.tar.xz
 
 - sudo cp -rf ./mingw32/* /builds/worker/fetches/mingw32/
+- export PATH=$PATH:/$TRAVIS_BUILD_DIR/fxc2/bin
+- fxc2 --version
 
 - mkdir -p mozilla-central
 - cd mozilla-central
@@ -48,7 +50,6 @@ script:
 - /home/travis/build/imharrywu/firefox-win-crossbuild/clang/bin/i686-w64-mingw32-clang --version
 
 - cp -f $TRAVIS_BUILD_DIR/.mozconfig ./
-- find tooltool -type d -maxdepth 2
 - ./mach build
 
 
