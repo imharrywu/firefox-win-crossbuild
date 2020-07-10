@@ -29,6 +29,8 @@ script:
 - if ! [ -f $HOME/tarballs/nsis.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw32-nsis.latest/artifacts/public/build/nsis.tar.xz" -o $HOME/tarballs/nsis.tar.xz; fi
 - if ! [ -f $HOME/tarballs/fxc2.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o $HOME/tarballs/fxc2.tar.xz; fi
 
+- mkdir -p tooltool
+
 - tar -I zstd -xf $HOME/tarballs/clangmingw.tar.zst -C tooltool
 - tar -I zstd -xf $HOME/tarballs/rustc.tar.zst -C tooltool
 - tar -xJpf $HOME/tarballs/cbindgen.tar.xz -C tooltool
@@ -36,7 +38,7 @@ script:
 - tar -xJpf $HOME/tarballs/fxc2.tar.xz  -C tooltool
 
 - cp -f $TRAVIS_BUILD_DIR/.mozconfig ./
-- find . -type d -maxdepth 2
+- find tooltool -type d -maxdepth 2
 - ./mach build
 
 
