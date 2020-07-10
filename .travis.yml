@@ -36,7 +36,7 @@ script:
 - tar -xJpf $HOME/tarballs/fxc2.tar.xz  -C tooltool
 
 - cp -f $TRAVIS_BUILD_DIR/.mozconfig ./
-
+- find . -type d -maxdepth 2
 - ./mach build
 
 
