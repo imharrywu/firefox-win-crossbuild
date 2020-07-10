@@ -28,7 +28,7 @@ script:
 - tar -xJpf $HOME/tarballs/fxc2.tar.xz 
 
 - mkdir -p mozilla-central
-- cd mozilla-cental
+- cd mozilla-central
 - git init
 - git remote add origin https://github.com/imharrywu/mozilla-central
 - git fetch origin master
