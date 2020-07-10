@@ -46,7 +46,7 @@ mk_add_options "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 # Do not include the visual studio related mozconfigs of course
 
 ac_add_options --with-branding=browser/branding/nightly
-ac_add_options --
+ac_add_options --disable-av1
 
 RUSTC="${TOOLTOOL_DIR}/rustc/bin/rustc"
 CARGO="${TOOLTOOL_DIR}/rustc/bin/cargo"
