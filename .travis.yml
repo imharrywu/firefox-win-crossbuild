@@ -7,15 +7,21 @@ dist: xenial
 arch: amd64
 sudo: required
 compiler: clang
+services:
+  - xvfb
+
 cache:
   directories:
   - $HOME/tarballs
 
 before_install:
-- echo $DISPLAY
-- export DISPLAY=:0
 - sudo apt-get update -qy
 - sudo mkdir -p /builds/worker/fetches/mingw32/
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 20 # give xvfb some time to start
+- echo $DISPLAY
+
 install:
 - sudo apt-get install -y zstd
 - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
