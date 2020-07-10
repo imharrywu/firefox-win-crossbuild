@@ -16,13 +16,11 @@ cache:
 
 before_install:
 - sudo apt-get update -qy
-- sudo mkdir -p /builds/worker/fetches/mingw32/
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
 - sleep 20 # give xvfb some time to start
 - echo $DISPLAY
 
 install:
+- sudo mkdir -p /builds/worker/fetches/mingw32/
 - sudo apt-get install -y zstd
 - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 - export NVM_DIR="$HOME/.nvm"
@@ -36,13 +34,13 @@ script:
 - if ! [ -f $HOME/tarballs/rustc.tar.zst ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.mingw32-rust-1.43.latest/artifacts/public/build/rustc.tar.zst" -o $HOME/tarballs/rustc.tar.zst; fi
 - if ! [ -f $HOME/tarballs/cbindgen.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-cbindgen.latest/artifacts/public/build/cbindgen.tar.xz" -o $HOME/tarballs/cbindgen.tar.xz; fi
 - if ! [ -f $HOME/tarballs/nsis.tar.xz ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw32-nsis.latest/artifacts/public/build/nsis.tar.xz" -o $HOME/tarballs/nsis.tar.xz; fi
-- curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o $HOME/tarballs/fxc2.tar.xz
+- curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-mingw-fxc2-x86.latest/artifacts/public/build/fxc2.tar.xz" -o fxc2.tar.xz
 
 - tar -I zstd -xf $HOME/tarballs/clangmingw.tar.zst
 - tar -I zstd -xf $HOME/tarballs/rustc.tar.zst
 - tar -xJpf $HOME/tarballs/cbindgen.tar.xz
 - tar -xJpf $HOME/tarballs/nsis.tar.xz
-- tar -xJpf $HOME/tarballs/fxc2.tar.xz
+- tar -xJpf fxc2.tar.xz
 
 - sudo cp -rf ./mingw32/* /builds/worker/fetches/mingw32/
 - export PATH=$PATH:$TRAVIS_BUILD_DIR/fxc2
