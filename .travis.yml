@@ -10,6 +10,15 @@ compiler: clang
 services:
   - xvfb
 
+addons:
+  apt:
+    update: true
+    sources:
+    - sourceline: "deb https://dl.winehq.org/wine-builds/ubuntu bionic main"
+      key_url: "https://dl.winehq.org/wine-builds/winehq.key"
+    packages:
+    - winehq-stable
+
 cache:
   directories:
   - $HOME/tarballs
@@ -27,7 +36,7 @@ install:
 - source "$NVM_DIR/nvm.sh"  # This loads nvm
 - source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 - nvm install v10.19
-- sudo apt-get install -y yasm nasm autoconf2.13 wine winetricks
+- sudo apt-get install -y yasm nasm autoconf2.13 winetricks
 - sudo winetricks vcrun2015
 
 script:
