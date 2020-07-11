@@ -18,7 +18,6 @@ before_install:
 - sudo apt-get update -qy
 - sleep 20 # give xvfb some time to start
 - echo $DISPLAY
-- export WINEARCH=win32
 
 install:
 - sudo mkdir -p /builds/worker/fetches/mingw32/
