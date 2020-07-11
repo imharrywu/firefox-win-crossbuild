@@ -27,17 +27,15 @@ before_install:
 - sudo apt-get update -qy
 - sleep 20 # give xvfb some time to start
 - echo $DISPLAY
-
-install:
-- sudo mkdir -p /builds/worker/fetches/mingw32/
-- sudo apt-get install -y zstd
 - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 - export NVM_DIR="$HOME/.nvm"
 - source "$NVM_DIR/nvm.sh"  # This loads nvm
 - source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+install:
+- sudo apt-get install -y zstd yasm nasm autoconf2.13 wine-stable winetricks
 - nvm install v10.19
-- sudo apt-get install -y yasm nasm autoconf2.13 wine-stable winetricks
-- sudo winetricks vcrun2015
+- winetricks vcrun2015
 
 script:
 - if ! [ -f $HOME/tarballs/clangmingw.tar.zst ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-clang-9-mingw-x86.latest/artifacts/public/build/clangmingw.tar.zst" -o $HOME/tarballs/clangmingw.tar.zst; fi
@@ -52,20 +50,17 @@ script:
 - tar -xJpf $HOME/tarballs/nsis.tar.xz
 - tar -xJpf fxc2.tar.xz
 
-- sudo cp -rf ./mingw32/* /builds/worker/fetches/mingw32/
-- export PATH=$PATH:$TRAVIS_BUILD_DIR/fxc2
-- find $TRAVIS_BUILD_DIR -type d -maxdepth 3
+- sudo mkdir -p /builds/worker/fetches/
+- sudo ln -s $TRAVIS_BUILD_DIR/mingw32 /builds/worker/fetches/
 
-- mkdir -p mozilla-central
-- cd mozilla-central
+- mkdir -p $TRAVIS_BUILD_DIR/mozilla-central
+- cd $TRAVIS_BUILD_DIR/mozilla-central
 - git init
 - git remote add origin https://github.com/imharrywu/mozilla-central
 - git fetch origin master
 - git checkout -b master origin/master
 
-- /home/travis/build/imharrywu/firefox-win-crossbuild/clang/bin/i686-w64-mingw32-clang --version
-
-- cp -f $TRAVIS_BUILD_DIR/.mozconfig ./
-- ./mach build
+- cp -f $TRAVIS_BUILD_DIR/.mozconfig $TRAVIS_BUILD_DIR/mozilla-central/.mozconfig
+- $TRAVIS_BUILD_DIR/mozilla-central/mach build
 
 
