@@ -61,6 +61,6 @@ script:
 - git checkout -b master origin/master
 
 - cp -f $TRAVIS_BUILD_DIR/.mozconfig $TRAVIS_BUILD_DIR/mozilla-central/.mozconfig
-- $TRAVIS_BUILD_DIR/mozilla-central/mach build
+- $TRAVIS_BUILD_DIR/mozilla-central/mach -l ./buildlog build
 
 
