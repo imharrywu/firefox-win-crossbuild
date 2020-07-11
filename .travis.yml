@@ -35,7 +35,7 @@ before_install:
 install:
 - sudo apt-get install -y zstd yasm nasm autoconf2.13 wine-stable winetricks
 - nvm install v10.19
-- winetricks vcrun2015
+- #winetricks vcrun2015
 
 script:
 - if ! [ -f $HOME/tarballs/clangmingw.tar.zst ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-clang-9-mingw-x86.latest/artifacts/public/build/clangmingw.tar.zst" -o $HOME/tarballs/clangmingw.tar.zst; fi
