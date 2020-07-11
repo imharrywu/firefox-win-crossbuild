@@ -33,7 +33,7 @@ before_install:
 - source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 install:
-- sudo apt-get install -y zstd yasm nasm autoconf2.13 wine-stable winetricks
+- sudo apt-get install -y zstd yasm nasm autoconf2.13 wine32 winetricks
 - nvm install v10.19
 - #winetricks vcrun2015
 
