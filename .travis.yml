@@ -28,7 +28,7 @@ install:
 - source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 - nvm install v10.19
 - sudo apt-get install -y yasm nasm autoconf2.13 wine winetricks
-- winetricks vcrun2015
+- sudo winetricks --self-update
 
 script:
 - if ! [ -f $HOME/tarballs/clangmingw.tar.zst ]; then curl -kL "https://firefox-ci-tc.services.mozilla.com/api/index/v1/task/gecko.cache.level-3.toolchains.v3.linux64-clang-9-mingw-x86.latest/artifacts/public/build/clangmingw.tar.zst" -o $HOME/tarballs/clangmingw.tar.zst; fi
