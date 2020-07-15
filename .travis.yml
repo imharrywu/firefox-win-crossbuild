@@ -33,7 +33,7 @@ before_install:
 - source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 install:
-- sudo apt-get install -y zstd yasm nasm autoconf2.13 wine32 winetricks #sshpass python3-pip build-essential 
+- sudo apt-get install -y zstd yasm nasm autoconf2.13 wine32 winetricks #sshpass python3-pip build-essential upx p7zip-full
 - nvm install v10.19
 - #winetricks vcrun2015
 
